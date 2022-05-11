@@ -1,43 +1,77 @@
-var Suits = ["Spades", "Clubs", "Diamonds", "Hearts"]
-var Values = ["A", "K", "Q", "J", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-var players = new Array();
+const Suits = ["Spades", "Clubs", "Diamonds", "Hearts"]
+const Values = ["A", "K", "Q", "J", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 
-function createPlayers(num){
-	players = new Array();
-  for(var i = 1; i <= num; i++) {
-  	var hand = new Array();
-    var player = { Name: 'Player ' + i, ID: i, Points: 0, Hand: hand }
-    players.push(player);
+class Deck{
+  constructor(cards = freshDeck()){
+    this.cards = cards
+  }
+
+  get numberOfCards(){
+    return this.cards.length
+  }
+
+  pop() {
+    return this.cards.shift()
+  }
+
+  push(card){
+    this.cards.push(card)
+  }
+
+  shuffle() {
+    for (let i = this.numberOfCards -1; i > 0; i--) {
+      const newIndex = Math.floor(Math.random() * (i + 1))
+      const oldValue = this.cards[newIndex]
+      this.cards[newIndex] = this.cards[i]
+      this.cards[i] = oldValue
     }
   }
-
-function createDeck(){
-	let Deck = Array()
-  for (i = 0; i < Suits.length; i++){
-  	for(x = 0; x < Values.length; i++){
-    	let Card = {Value: Values[x], Suit: Suits[i]}
-      Deck.push(Card)
-    }
+}
+  
+class Card {
+  constructor(suit, value) {
+    this.suit = suit
+    this.value = value
   }
 }
 
-function Shuffle(Deck) {
-	for (let i = 0; i < 1000; i++) {
-  	let location1 = Math.floor((Math.random() * Deck.length));
-		let location2 = Math.floor((Math.random() * Deck.length));
-		let tmp = Deck[location1]; 
-    
-    deck[location1] = deck[location2];
-		deck[location2] = tmp;
-  }
+function freshDeck() {
+  return Suits.flatMap(suit => {
+    return Values.map(value => {
+      return new Card(suit, value)
+    })
+  })
 }
 
-var deck1 = createDeck()
-Shuffle(deck1)
-
-function dealCard(Deck){
-    return Deck.pop();
+const cardValue = {
+  "2": 2,
+  "3": 3,
+  "4": 4,
+  "5": 5,
+  "6": 6,
+  "7": 7,
+  "8": 8,
+  "9": 9,
+  "10": 10,
+  J: 11,
+  Q: 12,
+  K: 13,
+  A: 14
 }
 
-let card = dealCard(deck1);
-console.log(card);
+let playerDeck
+let computerDeck
+let inRound
+let stop
+
+function startGame(){
+  deck = new Deck()
+  deck.Shuffle()
+
+  const deckMid = (deck.numberOfCards / 2)
+  Deck1 = new Deck(deck.cards.slive(0, deckMid))
+  Deck2 = new Deck(deck.cards.slice(deckMid, deck.numberOfCards))
+
+  console.log(Deck1)
+  console.log(Deck2)
+}
