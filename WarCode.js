@@ -1,6 +1,6 @@
 const Suits = ["Spades", "Clubs", "Diamonds", "Hearts"]
 const Values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-const Ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "K", "Q","J", "A",]
+const Ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A",]
 var player1 = []
 var player2 = []
 
@@ -55,15 +55,15 @@ function startGame (){
     this.player1[i] = freshDeck.dealCard();
     this.player2[i] = freshDeck.dealCard();
   }
-
-  console.log(player1)
-  console.log(player2)
+  
+  console.log(this.player1)
+  console.log(this.player2)
   
   for (let i = 0; i < 26; i++) {
-    if (player1[i] > player2[i]){
-      console.log(player1[i].values + "" + "is greater than" + "" + player2[i].values)
+    if (this.player1[i].values > this.player2[i].values){
+      console.log(player1[i] + "" + "is greater than" + "" + player2[i])
       return player1Score + 1
-    } else if (player2[i] > player1[i]){
+    } else if (this.player2[i] > this.player1[i]){
       console.log(player2[i] + ""+ "is greater than" + "" + player1[i])
       return player2Score + 1
     } else {
