@@ -90,6 +90,11 @@ function startGame (){
     }
   }
 
+  //Player score if tied is set to 0
+  if (player1Score == player2Score){
+    player1Score = 0
+    player2Score = 0
+  }
   //This displays each players final scores
   console.log("Player 1's Score is " + player1Score);
   console.log("Player 2's Score is " + player2Score);
